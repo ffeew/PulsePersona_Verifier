@@ -8,8 +8,8 @@ export default function Home() {
   const [showModal, setShowModal] = useState(false);
   const [verifySuccess, setVerifySuccess] = useState(false);
 
-  const handleVerify = (file: object) => {
-    console.log(file);
+  const handleVerify = (content: object) => {
+    console.log(content);
     // verify uploaded json file here
     //
     //
