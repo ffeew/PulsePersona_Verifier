@@ -5,6 +5,7 @@ import UploadFileModal from "./components/UploadFileModal";
 import LoginCard from "./components/LoginCard";
 import { ethers } from "ethers";
 import abi from "./identityRegistryAbi.json";
+import pulsePersonaConfig from "../pulsepersona.config.json";
 
 type VerifiableCredential = {
 	"@context": string[];
@@ -12,18 +13,12 @@ type VerifiableCredential = {
 	type: string[];
 	issuer: string;
 	issuanceDate: string;
+	name: string;
 	credentialSubject: {
 		id: string;
 		firstName: string;
 		lastName: string;
 		email: string;
-	};
-	proof: {
-		type: string;
-		created: string;
-		proofPurpose: string;
-		verificationMethod: string;
-		proofValue: string;
 	};
 };
 
@@ -32,17 +27,19 @@ export default function Home() {
 	const [verifySuccess, setVerifySuccess] = useState(false);
 
 	const verifyOnBlockchain = async (content: VerifiableCredential) => {
-		const contractAddress = "0xa34a080a97A01f340f853Af69Fe7487E73561aA0";
+		const contractAddress = pulsePersonaConfig.smartContractAddress;
 		const provider = ethers.getDefaultProvider(
-			"https://sepolia.infura.io/v3/c4dec57aaf3140fe9df7ccfee9ed1b24"
+			pulsePersonaConfig.providerAddress
 		);
 
 		const contract = new ethers.Contract(contractAddress, abi, provider);
 		const claimId = content.id;
+		console.log("claimId", claimId);
 
 		// obtain the hash of the credential
 		try {
 			const hash = await contract.getClaimHash(claimId);
+			console.log("hash", hash);
 
 			// hash the VC content
 			const vcBytes = ethers.toUtf8Bytes(JSON.stringify(content));
