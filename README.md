@@ -49,3 +49,13 @@ npm install
 ```bash
 npm run dev
 ```
+
+### Usage Manual
+
+![Screenshot](app/assets/images/image17.png)
+
+To login with a PulsePersona account, click on the “Continue with PulsePersona” button.
+
+![Screenshot](app/assets/images/image12.png)
+
+Drag and drop your personal VC into the popup modal for the verifier to verify.
