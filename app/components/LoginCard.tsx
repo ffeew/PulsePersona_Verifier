@@ -62,13 +62,11 @@ export default function LoginCard({ onClickPulsePersona }: LoginCardProps) {
             Continue with PulsePersona
           </p>
         </button>
-        <div className="w-full flex justify-start items-center">
-          <button>
-            <p className="font-medium text-xs">
-              Do not have an account? <span className="underline">Sign up</span>
-            </p>
-          </button>
-        </div>
+        <button className="w-full flex justify-center items-center">
+          <p className="font-medium text-xs">
+            Do not have an account? <span className="underline">Sign up</span>
+          </p>
+        </button>
       </div>
     </div>
   );
